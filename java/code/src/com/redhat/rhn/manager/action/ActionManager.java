@@ -1731,4 +1731,24 @@ public class ActionManager extends BaseManager {
         ActionFactory.save(action);
         return action;
     }
+
+    /**
+     * scheduleIpaEnroll
+     * @param scheduler Scheduler of the action
+     * @param server Server to IPA enroll
+     * @param earliest Date of earliest execution, if null, current date is used
+     * @return IPA enrollment action
+     */
+    public static Action scheduleIpaEnroll(User scheduler, Server server, Date earliest) {
+        if (!SystemManager.clientCapable(server.getId(), "ipa.enroll")) {
+            throw new MissingCapabilityException("spacewalk-ipa-client", server);
+        }
+
+        Action action = ActionManager.scheduleAction(scheduler, server,
+                        ActionFactory.TYPE_IPA_ENROLL,
+                        ActionFactory.TYPE_IPA_ENROLL.getName(),
+                        earliest == null ? new Date() : earliest);
+        ActionFactory.save(action);
+        return action;
+    }
 }

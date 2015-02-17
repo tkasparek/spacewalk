@@ -5486,4 +5486,35 @@ public class SystemHandler extends BaseHandler {
         return action.getId().intValue();
     }
 
+    /**
+     * Schedule IPA enrollment of client at given date and time
+     * @param loggedInUser The current user
+     * @param serverId Server Id
+     * @param date The date of earlies occurence
+     * @return ID of the action if the action scheduling succeeded, exception otherwise
+     *
+     * @xmlrpc.doc Schedule IPA enrollment of client at given date and time
+     * @xmlrpc.param #param("string", "sessionKey")
+     * @xmlrpc.param #param("int", "serverId")
+     * @xmlrpc.param #param("dateTime.iso860", "date")
+     * @xmlrpc.returntype int actionIn - The action id of the scheduled action
+     */
+    public int scheduleIpaEnroll(User loggedInUser, Integer serverId, Date date) {
+        Server server = lookupServer(loggedInUser, serverId);
+
+        if (server == null) {
+            throw new InvalidSystemException();
+        }
+
+        Action action = null;
+        try {
+            action = ActionManager.scheduleIpaEnroll(loggedInUser, server, null);
+        }
+        catch (MissingCapabilityException e) {
+            throw new com.redhat.rhn.frontend.xmlrpc.MissingCapabilityException();
+        }
+
+        return action.getId().intValue();
+    }
+
 }

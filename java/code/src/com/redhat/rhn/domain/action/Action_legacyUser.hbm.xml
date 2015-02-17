@@ -342,6 +342,10 @@ PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                   discriminator-value="51" lazy="true">
         </subclass>
 
+        <subclass name="com.redhat.rhn.domain.action.IpaEnrollAction"
+                  discriminator-value="52" lazy="true">
+        </subclass>
+
 
         <!-- PackageActions: 1, 3, 4, 8, 13, 14, 33 -->
         <!-- PackageAction is abstract - the subclasses only get instantiated -->

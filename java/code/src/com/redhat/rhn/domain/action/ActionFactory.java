@@ -1007,6 +1007,9 @@ public class ActionFactory extends HibernateFactory {
     public static final ActionType TYPE_CLIENTCERT_UPDATE_CLIENT_CERT =
             lookupActionTypeByLabel("clientcert.update_client_cert");
 
+    public static final ActionType TYPE_IPA_ENROLL =
+            lookupActionTypeByLabel("ipa.enroll");
+
     public static final String TXN_OPERATION_INSERT = "insert";
     public static final String TXN_OPERATION_DELETE = "delete";
 
