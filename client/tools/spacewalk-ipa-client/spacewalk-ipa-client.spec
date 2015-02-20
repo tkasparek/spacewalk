@@ -1,5 +1,5 @@
 Name:		spacewalk-ipa-client
-Version:	2.3.0
+Version:	2.3.1
 Release:	1%{?dist}
 Summary:	Package allowing IPA enrollment via Spacewalk
 
@@ -40,3 +40,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Feb 20 2015 Tomas Kasparek <tkasparek@redhat.com> 2.3.1-1
+- new package built with tito
+
